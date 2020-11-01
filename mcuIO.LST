@@ -1,0 +1,78 @@
+A51 MACRO ASSEMBLER  MCUIO                                                                11/01/2020 22:47:08 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN mcuIO.OBJ
+ASSEMBLER INVOKED BY: D:\keil\C51\BIN\A51.EXE mcuIO.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1             ORG 0000h         ;´ÓÆðÊ¼µØÖ·0¿ªÊ¼
+0000 0130              2              AJMP HA1S        ;MAINÔÚµØÖ·0
+                       3     
+0030                   4              ORG 0030H        ;´Ó0x30H¿ªÊ¼´æ·ÅÖÐ¶ÏÏòÁ¿
+0030 7400              5     HA1S:   MOV A,#00H        ;½«Á¢¼´Ê00H´«µ½ÀÛ¼ÓÆ÷A
+0032 7910              6                     MOV R1,#10H       ;½«Á¢¼´Ê10H´«µ½ÀÛ¼ÓÆ÷R1
+0034                   7     LOOP:             ;Ñ­»·Ìå
+                       8     
+0034 20B3FD            9     HA1S1:  JB P3.3,HA1S1            ;Èç¹ûP3.3Îª¸ßµçÆ½Ìø×ªµ½MAIN
+0037 7A20             10                             MOV R2,#20H              ;½«Á¢¼´Ê20H´«µ½¼Ä´æÆ÷R2
+0039 120057           11                             LCALL DELAY              ;µ÷ÓÃÑÓÊ±º¯ÊDELAY
+003C 20B3F5           12                             JB P3.3,HA1S1    ;Èç¹ûP3.3Îª¸ßµçÆ½Ìø×ªµ½MAIN1
+003F 30B3FD           13     HA1S2:  JNB P3.3,HA1S2           ;ÅÐ¶ÏP3.3µÄÖµÊÇ²»ÊÇ0£¬Èç¹ûÊÇ¾ÍÌø×ªµ½MAIN2³ÌÐòÖ´ÐÐ£¬Èç¹û²»Ê
+                             Ç¾ÍË³ÐòÖ´ÐÐÏÂÒ»ÌõÖ¸Áî
+0042 7A20             14                             MOV R2,#20H              ;½«Á¢¼´Ê20H´«µ½¼Ä´æÆ÷R2
+0044 120057           15                             LCALL DELAY              ;µ÷ÓÃÑÓÊ±º¯ÊDELAY
+0047 30B3F5           16                             JNB P3.3,HA1S2    ;µ÷ÓÃÑÓÊ±º¯ÊDELAY
+004A D9E8             17     DJNZ R1,LOOP  ;Èç¹ûR1Ã»ÓÐ¼õµ½0£¬ÔòÌøµ½±êºÅÎªLOOP´¦¼ÌÐøÖ´ÐÐ
+                      18     
+004C                  19     HA1S3:
+004C 04               20                             INC A      ;ÀÛ¼ÓÆ÷
+004D C0E0             21                             PUSH ACC        ;°ÑÀÛ¼ÓÆ÷AµÄÊ¾ÝÑ¹Õ»£¬±£»¤Ê¾Ý
+004F F590             22                             MOV P1,A        ;½«ÀÛ¼ÓÆ÷AÖÐµÄÊ¾ÝËÍµ½P1¿ÚËø´æÆ÷ÖÐ
+0051 D0E0             23                             POP ACC         ;°ÑÀÛ¼ÓÆ÷AµÄÊ¾Ýµ¯Õ»
+0053 7910             24                             MOV R1,#10H      ;½«Á¢¼´Ê10H´«µ½ÀÛ¼ÓÆ÷R1
+0055 0134             25                             AJMP LOOP        ;ÎÞÌõ¼þÌø×ªµ½±êºÅÎªLOOP´¦
+                      26     
+0057 C002             27     DELAY:  PUSH 02H                  ;Ñ¹ÈëÕ»±£´æ02H
+0059 C002             28     DELAY1:  PUSH 02H                  ;Ñ¹ÈëÕ»±£´æ02H
+005B C002             29     DELAY2: PUSH 02H                   ;Ñ¹ÈëÕ»±£´æ02H
+005D DAFE             30     DELAY3: DJNZ R2,DELAY3          ;Èô2ÕßÐÐÆ÷ÀïµÄÊ¾Ý¼õ¡°1¡±£¬ÅÐ¶ÏÊÇ·ñÎª¡°0¡±£¬²»Îª¡°0¡±¾Í¼ù×ªµ
+                             ½DELAY3³ÌÐò
+005F D002             31                             POP 02H           ;µ¯³öÕ»µÄÊ¾Ý02H
+0061 DAF8             32                             DJNZ R2,DELAY2    ;R2¼Ä´æÆ÷ÀïµÄÊ¾Ý¼õ¡°1¡±£¬ÅÐ¶ÏÊÇ·ñÎª¡°0¡±£¬²»Îª¡°0
+                             ¡±¾ÍÌø×ªµ½DELAY2
+0063 D002             33                             POP 02H                   ;µ¯³öÕ»µÄÊ¾Ý02H
+0065 DAF2             34                             DJNZ R2,DELAY1     ;R2¼Ä´æÆ÷ÀïµÄÊ¾Ý¼õ¡°1¡±£¬ÅÐ¶ÏÊÇ·ñÎª¡°0¡±£¬²»Îª¡°
+                             0¡±¾ÍÌø×ªµ½DELAY1
+0067 D002             35                             POP 02H                   ;µ¯³öÕ»µÄÊ¾Ý02H
+0069 DAEC             36                             DJNZ R2,DELAY    ;¼Ä´æÆ÷ÀïµÄÊ¾Ý¼õ¡°1¡±£¬ÅÐ¶ÏÊÇ·ñÎª¡°0¡±£¬²»Îª¡°0¡±¾
+                             ÍÌø×ªµ½DELAY
+006B 22               37                             RET
+                      38                             END
+A51 MACRO ASSEMBLER  MCUIO                                                                11/01/2020 22:47:08 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+DELAY. . . . . . .  C ADDR   0057H   A   
+DELAY1 . . . . . .  C ADDR   0059H   A   
+DELAY2 . . . . . .  C ADDR   005BH   A   
+DELAY3 . . . . . .  C ADDR   005DH   A   
+HA1S . . . . . . .  C ADDR   0030H   A   
+HA1S1. . . . . . .  C ADDR   0034H   A   
+HA1S2. . . . . . .  C ADDR   003FH   A   
+HA1S3. . . . . . .  C ADDR   004CH   A   
+LOOP . . . . . . .  C ADDR   0034H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
